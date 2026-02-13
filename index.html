@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz 5 Meses Nubecita 💕</title>
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        text-align: center;
+        color: white;
+    }
+
+    h1 {
+        font-size: 65px;
+        animation: glow 2s infinite alternate;
+        margin: 0;
+    }
+
+    #contador {
+        font-size: 28px;
+        margin-top: 20px;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #fff, 0 0 20px #ff4da6; }
+        to { text-shadow: 0 0 25px #fff, 0 0 50px #ff1a75; }
+    }
+
+    .floating {
+        position: absolute;
+        font-size: 26px;
+        animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+        from { transform: translateY(100vh); opacity: 1; }
+        to { transform: translateY(-10vh); opacity: 0; }
+    }
+
+    .audio-note {
+        position: fixed;
+        bottom: 10px;
+        font-size: 14px;
+        opacity: 0.8;
+    }
+</style>
+</head>
+<body>
+
+<h1>💖 Feliz 5 Meses Nubecita 💖</h1>
+<div id="contador"></div>
+
+<!-- Música de fondo -->
+<iframe width="0" height="0" 
+src="https://www.youtube.com/embed/5Hn2XwqYHj0?autoplay=1&loop=1&playlist=5Hn2XwqYHj0" 
+frameborder="0" allow="autoplay"></iframe>
+
+<div class="audio-note">🎵 Reproduce la música si tu navegador la bloquea</div>
+
+<script>
+    const fechaInicio = new Date("2025-10-04T00:00:00");
+
+    function actualizarContador() {
+        const ahora = new Date();
+        let diferencia = ahora - fechaInicio;
+
+        if (diferencia < 0) {
+            document.getElementById("contador").innerHTML =
+                "Nuestra historia empieza el 4 de octubre de 2025 💕";
+            return;
+        }
+
+        const segundos = Math.floor(diferencia / 1000) % 60;
+        const minutos = Math.floor(diferencia / (1000 * 60)) % 60;
+        const horas = Math.floor(diferencia / (1000 * 60 * 60)) % 24;
+        const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+
+        document.getElementById("contador").innerHTML =
+            "Han pasado <b>" + dias + "</b> días, " +
+            horas + " horas, " +
+            minutos + " minutos y " +
+            segundos + " segundos 💕";
+    }
+
+    setInterval(actualizarContador, 1000);
+    actualizarContador();
+
+    function crearElemento(simbolo) {
+        const elemento = document.createElement("div");
+        elemento.classList.add("floating");
+        elemento.innerHTML = simbolo;
+        elemento.style.left = Math.random() * 100 + "vw";
+        elemento.style.animationDuration = (6 + Math.random() * 6) + "s";
+        document.body.appendChild(elemento);
+        setTimeout(() => elemento.remove(), 12000);
+    }
+
+    setInterval(() => {
+        crearElemento("💗");
+        crearElemento("🌷");
+    }, 600);
+</script>
+
+</body>
+</html>
